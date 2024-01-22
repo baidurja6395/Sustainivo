@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="close" (click)="closePopup(false)">
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+    </div>
+    <div class="row">
+        <div class="col-md-5 imgBox">
+            <div class="ImgInput" *ngIf="!ProductForm?.value.image">
+                <label for="img"> Add a Image</label>
+                <input type="file" name="" id="img" (change)="onFileChange($event)">
+            </div>
+            <div *ngIf="ProductForm?.value.image">
+                <mat-card class="example-card">
+                    <img mat-card-image
+                        [src]="ProductForm?.value.image"
+                        alt="">
+                </mat-card>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <form *ngIf="ProductForm" [formGroup]="ProductForm">
+                <div class="formBox">
+                    <div class="boxwraper mt-3">
+                        <mat-form-field class="example-full-width" class="inputBox">
+                            <mat-label>Product Name</mat-label>
+                            <input matInput placeholder="Ex. Pizza" formControlName="product_name">
+                        </mat-form-field>
+                        <div class="errDiv">
+                            <app-validation-message 
+                            [control]="ProductForm.controls['product_name']"
+                            [messages]="errMsg.product_name"
+                            > </app-validation-message>
+                        </div>
+                    </div>
+                    <div class="boxwraper mt-3">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Product Description</mat-label>
+                            <textarea matInput placeholder="Leave a comment" formControlName="description"></textarea>
+                          </mat-form-field>
+                        <div class="errDiv">
+                            <app-validation-message 
+                            [control]="ProductForm.controls['description']"
+                            [messages]="errMsg.description"
+                            > </app-validation-message>
+                        </div>
+                    </div>
+                    <div class="boxwraper mt-3">
+                        <mat-form-field class="example-full-width" class="inputBox">
+                            <mat-label>Product Price</mat-label>
+                            <input matInput placeholder="Ex. Pizza" formControlName="price">
+                        </mat-form-field>
+                        <div class="errDiv">
+                            <app-validation-message 
+                            [control]="ProductForm.controls['price']"
+                            [messages]="errMsg.price"
+                            > </app-validation-message>
+                        </div>
+                    </div>
+                    <div class="save">
+                        <button (click)="saveProduct(ProductForm.getRawValue(),ProductForm.valid)">{{!isEdit?'Add':'Update'}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

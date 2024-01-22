@@ -1,0 +1,73 @@
+
+
+
+.filter {
+    border-radius: 5px;
+    box-shadow: rgb(100 105 111 / 20%) 0px 7px 29px 0px;
+    padding:20px
+}
+.filter h3{
+    font-size: 18px;
+    font-weight: 400;
+    color: #0052ff;
+}
+
+.short{
+    border-radius: 5px;
+    box-shadow: rgb(100 105 111 / 20%) 0px 7px 29px 0px;
+    padding:20px 
+}
+
+.short h3{
+    font-size: 18px;
+    font-weight: 400;
+    color: #0052ff;
+}
+
+.productBox{
+    border-radius: 5px;
+    box-shadow: rgb(100 105 111 / 20%) 0px 7px 29px 0px;
+    padding:20px;
+    height: 500px;
+    width: 100%;
+}
+
+.ProductDescription{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.addNew{
+    display: flex;
+    justify-content: center;
+}
+
+.addNew button{
+    background: #0990ac;
+    box-shadow: 0px 11px 34px -5px rgb(7 94 109 / 74%);
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    width: 75%;
+    margin-bottom: 0;
+    padding: 1.0938rem;
+    position: relative;
+}
+
+.modal{
+    display: block;
+    position: absolute;
+    top: 100px;
+}
+.modal .modal-content{
+    position: relative !important;
+    display: flex !important;
+    
+}

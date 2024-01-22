@@ -1,0 +1,99 @@
+<section>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <form *ngIf="filterAndShortOptionFormGroup" [formGroup]="filterAndShortOptionFormGroup">
+                <div class="filter">
+                    <h3>Price range</h3>
+                    <div class="filterInput mt-4">
+                        <div class="row">
+                            <div class="col-md-6 d-flex">
+                                <mat-form-field class="example-full-width" class="inputBox">
+                                    <mat-label>Minium Price</mat-label>
+                                    <input matInput placeholder="Ex. Pizza" type="number" formControlName="minFilterPrice"
+                                    min="0">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 d-flex">
+                                <mat-form-field class="example-full-width" class="inputBox">
+                                    <mat-label>Maximum Price</mat-label>
+                                    <input matInput placeholder="Ex. Pizza" type="number" formControlName="maxFilterPrice"
+                                    min="0">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="filterApply">
+                        <button (click)="filterProducts()">Apply</button>
+                    </div>
+                </div>
+                <div class="short mt-2">
+                    <h3>Short</h3>
+                    <div class="row">
+                        <div class="col-md-12 d-flex">
+                            <mat-form-field class="example-full-width">
+                                <mat-select placeholder="Price" formControlName="shortOption" (selectionChange)="shortProducts($event)">
+                                    <mat-option >
+                                    </mat-option>
+                                    <mat-option [value]="'LTH'">
+                                        Price low to high
+                                    </mat-option>
+                                    <mat-option [value]="'HTL'">
+                                        Price high to low
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="addNew mt-4">
+                    <button (click)="addNewProduct()"> + Add New Product</button>
+                </div>
+            </form>
+            </div>
+            <div class="col-md-8">
+                <div class="productBox">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row" *ngIf="updatedProductList.length">
+                                <div class="col-md-4" *ngFor="let product of updatedProductList">
+                                    <mat-card class="example-card">
+                                        <img mat-card-image
+                                            [src]="product.image"
+                                            alt="">
+                                        <mat-card-content>
+                                            <p class="productName">{{product.product_name}}</p>
+                                            <p class="ProductDescription">
+                                                {{product.description}}
+                                            </p>
+                                            <p><b>{{product.price|currency}}</b></p>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <button mat-button (click)="editProduct(product.product_id)">Edit</button>
+                                            <button mat-button (click)="deleteProduct(product.product_id)">Delete</button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </div>
+                            </div>
+                            <div class="noData" *ngIf="!updatedProductList.length">
+                                <p>No Product available</p>
+                                <div class="addNew">
+                                    <button (click)="addNewProduct()"> + Add New Product</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" tabindex="-1" role="dialog" *ngIf="manageProductPopup">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <app-manage-product [productID]="productID" (Close)="closeManageProductPopup($event)"></app-manage-product>
+        </div>
+    </div>
+</div>
