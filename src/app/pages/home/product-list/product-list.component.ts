@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormService } from '../../../services/form.service';
 import { debounceTime, pipe } from 'rxjs';
+import { USER_ID } from '../../../constants/constant';
 
 @Component({
   selector: 'app-product-list',
@@ -81,12 +82,12 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  addNewProduct() {
+
+  openManageProductPopup(data?:any){
     this.manageProductPopup = true;
-  }
-  editProduct(data: any) {
-    this.manageProductPopup = true;
-    this.productID = data;
+    if(data){
+      this.productID = data;
+    }
   }
 
    deleteProduct(productId:number){
@@ -127,5 +128,9 @@ export class ProductListComponent implements OnInit {
       maxFilterPrice: [1000],
       shortOption: ['']
     })
+  }
+
+  signOut(){
+    this.router.navigate(['../'])
   }
 }

@@ -1,5 +1,6 @@
 <div class="loginBody">
     <div class="loginBox">
+        <h2>sing up</h2>
         <form  *ngIf="signupForm" #loginFormRef [formGroup]="signupForm" class="form">
             <div class="boxwraper mt-3">
                 <mat-form-field class="example-full-width" class="inputBox">
@@ -64,7 +65,7 @@
                 <input type="submit" value="Register" (click)="signup()">
             </div>
             <div class="linkWraper mt-2">
-                <p>Remember account <a [routerLink]="'../'">Login</a> </p>
+                <p>Remember account <a [routerLink]="'../'">Sing in</a> </p>
             </div>
         </form>
         

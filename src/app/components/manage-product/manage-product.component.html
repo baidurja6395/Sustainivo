@@ -1,12 +1,18 @@
-<div class="container">
+<div class="ManageProduct">
     <div class="close" (click)="closePopup(false)">
-        <i class="fa fa-times-circle" aria-hidden="true"></i>
+        <i class="bi-x-circle-fill"></i>
     </div>
     <div class="row">
-        <div class="col-md-5 imgBox">
+        <div class="col-md-5 imgBox position-relative">
+            <div class="position-absolute" style="right: 2px;" *ngIf="ProductForm?.value.image">
+                <i class="bi-x-circle-fill"></i>
+            </div>
             <div class="ImgInput" *ngIf="!ProductForm?.value.image">
                 <label for="img"> Add a Image</label>
-                <input type="file" name="" id="img" (change)="onFileChange($event)">
+                <input type="file" name="" id="img" (change)="onFileChange($event)" style="width: 80%;">
+                <div class="errDiv">
+                   <small>{{imgErrMsg}}</small>
+                </div>
             </div>
             <div *ngIf="ProductForm?.value.image">
                 <mat-card class="example-card">
@@ -19,8 +25,8 @@
         <div class="col-md-7">
             <form *ngIf="ProductForm" [formGroup]="ProductForm">
                 <div class="formBox">
-                    <div class="boxwraper mt-3">
-                        <mat-form-field class="example-full-width" class="inputBox">
+                    <div class="boxwraper mt-3 w-100">
+                        <mat-form-field class="example-full-width inputBox w-100" >
                             <mat-label>Product Name</mat-label>
                             <input matInput placeholder="Ex. Pizza" formControlName="product_name">
                         </mat-form-field>
@@ -31,8 +37,8 @@
                             > </app-validation-message>
                         </div>
                     </div>
-                    <div class="boxwraper mt-3">
-                        <mat-form-field class="example-full-width">
+                    <div class="boxwraper mt-3 w-100">
+                        <mat-form-field class="example-full-width w-100">
                             <mat-label>Product Description</mat-label>
                             <textarea matInput placeholder="Leave a comment" formControlName="description"></textarea>
                           </mat-form-field>
@@ -43,8 +49,8 @@
                             > </app-validation-message>
                         </div>
                     </div>
-                    <div class="boxwraper mt-3">
-                        <mat-form-field class="example-full-width" class="inputBox">
+                    <div class="boxwraper mt-3 w-100">
+                        <mat-form-field class="example-full-width w-100 inputBox">
                             <mat-label>Product Price</mat-label>
                             <input matInput placeholder="Ex. Pizza" formControlName="price">
                         </mat-form-field>

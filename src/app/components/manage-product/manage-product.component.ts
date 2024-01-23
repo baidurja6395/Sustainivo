@@ -15,10 +15,11 @@ export class ManageProductComponent implements OnInit {
   @Output()
   Close: EventEmitter<boolean> = new EventEmitter();
   @Input()
-  productID: any = {}
+  productID: any;
   ProductForm: FormGroup | undefined;
   errMsg: any;
   isEdit: boolean = false;
+  imgErrMsg:string ='';
   constructor(
     private fb: FormBuilder,
     private formService: FormService,
@@ -110,22 +111,27 @@ export class ManageProductComponent implements OnInit {
   }
 
    onFileChange(imageInput: any) {
-    console.log(imageInput)
+   this.imgErrMsg = ''
     const file: File = imageInput.target.files[0]
-    this.productService.fileUpload(file)
-    .subscribe({
-      next: (res: any) => {
-        if (res.status === 'success') {
-          this.ProductForm?.get('image')?.setValue(res.url)
+    if(file.type === 'image/jpg' ||file.type === 'image/jpeg' || file.type === 'image/png'){
+      this.productService.fileUpload(file)
+      .subscribe({
+        next: (res: any) => {
+          if (res.status === 'success') {
+            this.ProductForm?.get('image')?.setValue(res.url)
+          }
+        }, error: (error: any) => {
+          if (error.status === 400) {
+            this.toastr.error(error.error.message)
+          } else {
+            this.toastr.error('Product  image could not upload deu to some error')
+          }
         }
-      }, error: (error: any) => {
-        if (error.status === 400) {
-          this.toastr.error(error.error.message)
-        } else {
-          this.toastr.error('Product  image could not upload deu to some error')
-        }
-      }
-    })
+      })
+    }else{
+      this.imgErrMsg = 'The file type should be jpg,jpeg or png'
+    }
+   
   }
 
   removeFile() {

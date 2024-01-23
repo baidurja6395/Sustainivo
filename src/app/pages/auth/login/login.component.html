@@ -1,6 +1,7 @@
 
 <div class="loginBody">
     <div class="loginBox">
+        <h2>sing in</h2>
         <form  *ngIf="loginForm" #loginFormRef [formGroup]="loginForm" class="form">
             <div class="boxwraper mt-3">
                 <mat-form-field class="example-full-width" class="inputBox">
@@ -38,7 +39,7 @@
                 <p >Remember me </p>
             </div>
             <div class="linkWraper mt-5">
-                <p>Don't have account <a [routerLink]="'registration'">Register</a> </p>
+                <p>Don't have account <a [routerLink]="'registration'">Sing up</a> </p>
             </div>
         </form>
         

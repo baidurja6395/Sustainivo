@@ -1,88 +1,108 @@
 .loginBody {
-    width: 100%;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  background-size: cover;
+  justify-content: flex-end;
+  background-image: url('../../../../assets/LogInBg.png');
 }
+
 .loginBox {
-    border-style: dashed;
-    border-radius: 5px;
-    background-color: #c9eded;
-    border-width: thin;
-    border-color: #148585;
-    height: 400px;
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+  height: 400px;
+  width: 300px;
+  margin: 170px;
+}
+
+.loginBox h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  color: #0f0f0f;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-    
-  }
-  .boxwraper{
-    height: 65px;
-    position:relative;
-  }
-  .eyeIcon {
-    position: absolute;
-    top: 11px;
-    right: 6px;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+
 }
-  
-  .inputBox {
-    width: 100%;
-  }
 
-  .burttonWraper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   
-  }
+.boxwraper {
+  height: 65px;
+  position: relative;
+}
 
-    
-  
+.eyeIcon {
+  position: absolute;
+  top: 27px;
+  right: 6px;
+}
 
-    .burttonWraper input[type="submit"] {
-        background: #0990ac;
-        box-shadow: 0px 11px 34px -5px rgba(7, 94, 109, 0.45);
-        border-radius: 0.5rem;
-        border: none;
-        outline: none;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1rem;
-        letter-spacing: 0.5px;
-        color: #FFFFFF;
-        width: 40%;
-        margin-bottom: 0;
-        padding: 1.0938rem;
-        position: relative;
-    }
+.inputBox {
+  width: 100%;
+}
 
-    .linkWraper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .linkWraper span {
-        color: rgb(0, 21, 255);
-    }
+.burttonWraper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    .rememberme {
-        display: flex;
-        flex-wrap: nowrap;
-        align-content: stretch;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: center;
-        margin-top: 5px;
-  }
+}
 
-   
+.burttonWraper input[type="submit"] {
+  background: #000000;
+  box-shadow: 6px 6px 8px -5px rgb(0 0 0 / 45%);
+  border-radius: 0.3rem;
+  border: none;
+  outline: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.838rem;
+  position: relative;
+}
+
+.linkWraper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkWraper span {
+  color: rgb(0, 21, 255);
+}
+
+.rememberme {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rememberme p,
+.linkWraper p {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #0f0f0f;
+  font-weight: 500;
+  margin: 0;
+  padding-left: 5px;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background: none !important;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled):hover {
+  background: none !important;
+}

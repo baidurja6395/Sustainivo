@@ -27,6 +27,7 @@ export class LoginComponent {
     this.createMsg()
   }
   ngOnInit(): void {
+    localStorage.removeItem(USER_ID)
     this.getlocalData()
   }
 
