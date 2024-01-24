@@ -19,7 +19,7 @@ export class ManageProductComponent implements OnInit {
   ProductForm: FormGroup | undefined;
   errMsg: any;
   isEdit: boolean = false;
-  imgErrMsg:string ='';
+  imgErrMsg: string = '';
   constructor(
     private fb: FormBuilder,
     private formService: FormService,
@@ -37,8 +37,8 @@ export class ManageProductComponent implements OnInit {
     }
   }
 
-   getProductDetails(productID:number){
-     this.productService.getProduct(productID).subscribe({
+  getProductDetails(productID: number) {
+    this.productService.getProduct(productID).subscribe({
       next: (res: any) => {
         if (res.status === 'success') {
           this.ProductForm?.patchValue(res.products)
@@ -53,7 +53,7 @@ export class ManageProductComponent implements OnInit {
     })
   }
 
-   saveProduct(data: any, isValid: boolean) {
+  saveProduct(data: any, isValid: boolean) {
     if (this.ProductForm) {
       this.formService.markFormGroupTouched(this.ProductForm)
       if (isValid) {
@@ -66,21 +66,21 @@ export class ManageProductComponent implements OnInit {
             description: data.description,
             price: data.price,
           }
-           this.productService.updateProduct(requestData)
-           .subscribe({
-            next: (res: any) => {
-              if (res.status === 'success') {
-                this.toastr.success(res.message)
-                this.closePopup(true)
+          this.productService.updateProduct(requestData)
+            .subscribe({
+              next: (res: any) => {
+                if (res.status === 'success') {
+                  this.toastr.success(res.message)
+                  this.closePopup(true)
+                }
+              }, error: (error: any) => {
+                if (error.status === 400) {
+                  this.toastr.error(error.error.message)
+                } else {
+                  this.toastr.error('Product could not update deu to some error')
+                }
               }
-            }, error: (error: any) => {
-              if (error.status === 400) {
-                this.toastr.error(error.error.message)
-              } else {
-                this.toastr.error('Product could not update deu to some error')
-              }
-            }
-          })
+            })
         } else {
           const requestData = {
             add_product: true,
@@ -89,49 +89,47 @@ export class ManageProductComponent implements OnInit {
             description: data.description,
             price: data.price,
           }
-           this.productService.createProduct(requestData)
-           .subscribe({
-            next: (res: any) => {
-              if (res.status === 'success') {
-                this.toastr.success(res.message)
-                this.closePopup(true)
+          this.productService.createProduct(requestData)
+            .subscribe({
+              next: (res: any) => {
+                if (res.status === 'success') {
+                  this.toastr.success(res.message)
+                  this.closePopup(true)
+                }
+              }, error: (error: any) => {
+                if (error.status === 400) {
+                  this.toastr.error(error.error.message)
+                } else {
+                  this.toastr.error('Product could not add deu to some error')
+                }
               }
-            }, error: (error: any) => {
-              if (error.status === 400) {
-                this.toastr.error(error.error.message)
-              } else {
-                this.toastr.error('Product could not add deu to some error')
-              }
-            }
-          })
+            })
         }
       }
-
     }
   }
 
-   onFileChange(imageInput: any) {
-   this.imgErrMsg = ''
+  onFileChange(imageInput: any) {
+    this.imgErrMsg = ''
     const file: File = imageInput.target.files[0]
-    if(file.type === 'image/jpg' ||file.type === 'image/jpeg' || file.type === 'image/png'){
+    if (file.type === 'image/jpg' || file.type === 'image/jpeg' || file.type === 'image/png') {
       this.productService.fileUpload(file)
-      .subscribe({
-        next: (res: any) => {
-          if (res.status === 'success') {
-            this.ProductForm?.get('image')?.setValue(res.url)
+        .subscribe({
+          next: (res: any) => {
+            if (res.status === 'success') {
+              this.ProductForm?.get('image')?.setValue(res.url)
+            }
+          }, error: (error: any) => {
+            if (error.status === 400) {
+              this.toastr.error(error.error.message)
+            } else {
+              this.toastr.error('Product  image could not upload deu to some error')
+            }
           }
-        }, error: (error: any) => {
-          if (error.status === 400) {
-            this.toastr.error(error.error.message)
-          } else {
-            this.toastr.error('Product  image could not upload deu to some error')
-          }
-        }
-      })
-    }else{
+        })
+    } else {
       this.imgErrMsg = 'The file type should be jpg,jpeg or png'
     }
-   
   }
 
   removeFile() {
