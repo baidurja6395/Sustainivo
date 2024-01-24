@@ -14,7 +14,7 @@
             </div>
             <div class="ImgDisplay  position-relativet" *ngIf="ProductForm?.value.image">
                 <img  [src]="ProductForm?.value.image" alt="">
-                <button class="mt-1 mb-1">Remove</button>
+                <button class="mt-2 mb-1" (click)="removeFile()">Remove</button>
             </div>
         </div>
         <div class="col-md-7">
@@ -32,12 +32,12 @@
                             > </app-validation-message>
                         </div>
                     </div>
-                    <div class="boxwraper mt-3 w-100">
+                    <div class="boxwraper Description mt-2 w-100">
                         <mat-form-field class="example-full-width w-100">
                             <mat-label>Product Description</mat-label>
-                            <textarea matInput placeholder="Leave a comment" formControlName="description"></textarea>
+                            <textarea matInput placeholder="Leave a comment" cols="10" rows="3" formControlName="description" type="text"></textarea>
                           </mat-form-field>
-                        <div class="errDiv">
+                        <div class="errDiv textareaErr">
                             <app-validation-message 
                             [control]="ProductForm.controls['description']"
                             [messages]="errMsg.description"
@@ -56,7 +56,7 @@
                             > </app-validation-message>
                         </div>
                     </div>
-                    <div class="save">
+                    <div class="save mt-2">
                         <button (click)="saveProduct(ProductForm.getRawValue(),ProductForm.valid)">{{!isEdit?'Add':'Update'}}</button>
                     </div>
                 </div>
