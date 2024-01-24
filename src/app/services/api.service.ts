@@ -6,17 +6,9 @@ import { Subject, catchError, map } from 'rxjs';
 })
 export class ApiService {
   BASE_URL = "http://164.52.212.73:3001/api/v1";
-  loding:Subject<boolean>= new Subject()
   constructor(
     private http: HttpClient,
   ) { }
-
-  showLoder(){
-    this.loding.next(true)
-  }
-  hideLoder(){
-    this.loding.next(false)
-  }
 
    post(path:string, data:any,noLoder?:boolean){
     path = `${this.BASE_URL}/${path}`
@@ -42,10 +34,8 @@ export class ApiService {
     return this.http.delete<any>(`${path}`,options)
   }
 
-   uploadDoc(file:File,noLoder?:boolean){
-    const path = `${this.BASE_URL}/product/upload`
-    const formData = new FormData();
-    formData.append('image', file);
+   uploadDoc(formData:FormData,noLoder?:boolean){
+    const path = `${this.BASE_URL}/product/upload`;
     return this.http.post<any>(`${path}`, formData)
   }
 }

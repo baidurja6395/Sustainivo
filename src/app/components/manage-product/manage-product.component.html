@@ -3,23 +3,18 @@
         <i class="bi-x-circle-fill"></i>
     </div>
     <div class="row">
-        <div class="col-md-5 imgBox position-relative">
-            <div class="position-absolute" style="right: 2px;" *ngIf="ProductForm?.value.image">
-                <i class="bi-x-circle-fill"></i>
-            </div>
+        <div class="col-md-5 imgBox">
+            
             <div class="ImgInput" *ngIf="!ProductForm?.value.image">
                 <label for="img"> Add a Image</label>
                 <input type="file" name="" id="img" (change)="onFileChange($event)" style="width: 80%;">
-                <div class="errDiv">
+                <div class="fileErrMsg">
                    <small>{{imgErrMsg}}</small>
                 </div>
             </div>
-            <div *ngIf="ProductForm?.value.image">
-                <mat-card class="example-card">
-                    <img mat-card-image
-                        [src]="ProductForm?.value.image"
-                        alt="">
-                </mat-card>
+            <div class="ImgDisplay  position-relativet" *ngIf="ProductForm?.value.image">
+                <img  [src]="ProductForm?.value.image" alt="">
+                <button class="mt-1 mb-1">Remove</button>
             </div>
         </div>
         <div class="col-md-7">

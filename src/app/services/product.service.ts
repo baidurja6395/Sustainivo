@@ -38,6 +38,8 @@ export class ProductService {
   }
 
   fileUpload(file:File){
-    return  this.apiService.uploadDoc(file)
+    const formData = new FormData();
+    formData.append('productImage', file)
+    return  this.apiService.uploadDoc(formData)
   }
 }
